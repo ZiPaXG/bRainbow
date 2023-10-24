@@ -1,11 +1,12 @@
 class Game:
     def __init__(self, pg):
         """ Создание дисплея с настройками """
-        self.screen_width, self.screen_height = 800, 600
+        self.screen_width, self.screen_height = 1600, 1200
         self.FPS = 60
         self.clock = pg.time.Clock()
         self.display = pg.display.set_mode((self.screen_width, self.screen_height))
         pg.display.set_caption('bRainbow')
+        self.loadStart(pg)
 
     def event_processing(self, pg):
         isRunning = True
@@ -19,6 +20,10 @@ class Game:
 
         self.clock.tick(self.FPS)
         return isRunning
+
+    def loadStart(self, pg):
+        self.display.fill([255, 0, 0])
+        pg.display.update()
 
     def start(self, pg):
         isRunning = True
