@@ -1,5 +1,6 @@
 from models.card import Card
 import json
+import random
 
 
 class Deck:
@@ -28,5 +29,10 @@ class Deck:
             for i in range(8):
                 self.rule_deck.append(Card(list_cards[2][i][0], list_cards[2][i][1], list_cards[2][i][2], f"assets/imageCards/ruleCards/nameCards/{i+1}.png", True))
 
+    def shuffleCards(self):
+        random.shuffle(self.rule_deck)
+        random.shuffle(self.players_deck)
+
 
 deck = Deck()
+deck.shuffleCards()
