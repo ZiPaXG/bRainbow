@@ -16,6 +16,7 @@ list_players.append(Player("ZiPaXG"))
 deck = Deck()
 deck.shuffleCards()
 deck.give_cards(list_players)
+game = Game(pg)
 
 isRunning = True
 print("Вас приветствует игра bRainbow! ")
@@ -29,10 +30,12 @@ while isRunning:
         case 3:
             isRunning = not isRunning
         case 2:
-            deck.get_rools()
+            game.get_rools()
         case 1:
             # Сама игра (пока что основа в консоли)
             for i in range(len(deck.rule_deck)):
                 print(deck.rule_deck[i])
                 print(f"Игрок {list_players[0]} - выбирайте свою карту (введите от 1 до 6). Если нет подходящей - напишите 0")
                 a = int(input())
+                game.check_selected_card()
+

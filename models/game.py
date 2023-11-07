@@ -1,9 +1,11 @@
 class Game:
     def __init__(self, pg):
-        """ Создание дисплея с настройками """
         self.screen_width, self.screen_height = 1300, 1000
         self.FPS = 60
         self.clock = pg.time.Clock()
+        # Добавления поля display в класс
+        self.display = None
+    def start_display(self, pg):
         self.display = pg.display.set_mode((self.screen_width, self.screen_height))
         pg.display.set_caption('bRainbow')
         self.loadStart(pg)
@@ -24,6 +26,18 @@ class Game:
     def loadStart(self, pg):
         self.display.fill([255, 0, 0])
         pg.display.update()
+
+    @staticmethod
+    def get_rools():
+        print("Всего будет 24 раунда. Каждому игроку будет выдана колода из 6 карт")
+        print("Также есть общая колода карт (24 карты). Они будут вытягиваться поочереди. К ним применяются следующие правила: ")
+        print("Правило 1: На карте из общей колоды указано <Цвет> - берем карту, название которой есть цвет окраски основного слова")
+        print("Правило 2: На карте из общей колоды название написано черным - берем карту, название которой есть цвет фона")
+        print("Правило 3: Выпала карта bRainbow - нужно быстрее всех забрать ее")
+        print("Правило 4: На карте из общей колоды указано <Название> - берем карту с цветом названия основного слова, который указан")
+
+    def check_selected_card(self):
+        pass
 
     def start(self, pg):
         isRunning = True
