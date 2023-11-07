@@ -3,6 +3,10 @@ class Player:
         self.name = name
         self.score = 0
         self.wins = 0
+        self.hand_deck = []
+
+    def __repr__(self):
+        return f'{self.name}'
 
     def set_score(self, count_score):
         self.score += count_score

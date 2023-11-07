@@ -30,3 +30,4 @@ class Game:
         while isRunning:
             isRunning = self.event_processing(pg)
         pg.quit()
+
