@@ -40,6 +40,8 @@ while isRunning:
                 a = int(input())
                 game.check_selected_card(list_players[0], deck.rule_deck[i], list_players[0].hand_deck, a-1)
                 print(list_players[0].get_score())
+
+            # Подсчет очков
             print("Общее количество очков: ")
             for i in range(len(list_players)):
                 print(f"{list_players[i]} - {list_players[i].get_score()}")

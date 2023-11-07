@@ -53,6 +53,9 @@ class Game:
         elif deck_card.gameRule == "название":
             if player_cards[numCard].fgColor != deck_card.name:
                 player.add_score(3)
+        elif deck_card.gameRule == "bRainbow":
+            if numCard != 6:
+                player.add_score(3)
 
 
 
