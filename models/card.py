@@ -5,4 +5,7 @@ class Card:
         self.fgColor = fg_color
         self.img_path = img_path
         self.isGameRule = is_game_rule
-
+    def __repr__(self):
+        if self.name == 'bRainbow':
+            return f'{self.name}'
+        return f'{self.name}:{self.fgColor}:{self.bgColor}'

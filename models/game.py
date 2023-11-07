@@ -1,7 +1,7 @@
 class Game:
     def __init__(self, pg):
         """ Создание дисплея с настройками """
-        self.screen_width, self.screen_height = 1600, 1200
+        self.screen_width, self.screen_height = 1300, 1000
         self.FPS = 60
         self.clock = pg.time.Clock()
         self.display = pg.display.set_mode((self.screen_width, self.screen_height))

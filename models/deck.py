@@ -32,7 +32,5 @@ class Deck:
     def shuffleCards(self):
         random.shuffle(self.rule_deck)
         random.shuffle(self.players_deck)
+        print(self.players_deck)
 
-
-deck = Deck()
-deck.shuffleCards()

@@ -11,6 +11,7 @@ from models.deck import Deck
     3 строка - цвет фона
 '''
 
-game = Game(pg)
-game.start(pg)
-
+'''game = Game(pg)
+game.start(pg)'''
+deck = Deck()
+deck.shuffleCards()
