@@ -8,6 +8,7 @@ class Game:
         self.clock = pg.time.Clock()
         # Добавления поля display в класс
         self.display = None
+
     def start_display(self, pg):
         self.display = pg.display.set_mode((self.screen_width, self.screen_height))
         pg.display.set_caption('bRainbow')
@@ -40,21 +41,36 @@ class Game:
         print("Правило 4: На карте из общей колоды указано <Название> - берем карту с цветом названия основного слова, который указан")
 
     def check_selected_card(self, player: Player, deck_card: Card, player_cards: list[Card], numCard):
-        if deck_card.fgColor == "черный":
-            if deck_card.gameRule == "цвет":
+        if numCard != -1:
+            if deck_card.fgColor == "черный":
                 if player_cards[numCard].name != deck_card.bgColor:
                     player.add_score(3)
-            elif deck_card.gameRule == "название":
-                if player_cards[numCard].name != deck_card.name:
+            elif deck_card.gameRule == "цвет":
+                if player_cards[numCard].name != deck_card.fgColor:
                     player.add_score(3)
-        elif deck_card.gameRule == "цвет":
-            if player_cards[numCard].name != deck_card.fgColor:
-                player.add_score(3)
-        elif deck_card.gameRule == "название":
-            if player_cards[numCard].fgColor != deck_card.name:
-                player.add_score(3)
-        elif deck_card.gameRule == "bRainbow":
-            if numCard != 6:
+            elif deck_card.gameRule == "название":
+                if player_cards[numCard].fgColor != deck_card.name:
+                    player.add_score(3)
+            elif deck_card.gameRule == "bRainbow":
+                if numCard != 6:
+                    player.add_score(3)
+        else:
+            if deck_card.fgColor == "черный":
+                for i in range(len(player_cards)):
+                    if deck_card.bgColor == player_cards[i].name:
+                        player.add_score(3)
+                        break
+            elif deck_card.gameRule == "цвет":
+                for i in range(len(player_cards)):
+                    if deck_card.fgColor == player_cards[i].name:
+                        player.add_score(3)
+                        break
+            elif deck_card.gameRule == "название":
+                for i in range(len(player_cards)):
+                    if deck_card.name == player_cards[i].fgColor:
+                        player.add_score(3)
+                        break
+            elif deck_card.gameRule == "bRainbow":
                 player.add_score(3)
 
 

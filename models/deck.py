@@ -23,7 +23,7 @@ class Deck:
         with open('assets/data/cards_rule.json', 'r', encoding='UTF-8') as json_file:
             list_cards = list(json.load(json_file).values())
             for i in range(5):
-                self.rule_deck.append(Card(list_cards[0][i][0], list_cards[0][i][1], list_cards[0][i][2], f"assets/imageCards/ruleCards/blackCards/{i+1}.png", f"{list_cards[0][i][3]}"))
+                self.rule_deck.append(Card(list_cards[0][i][0], list_cards[0][i][1], list_cards[0][i][2], f"assets/imageCards/ruleCards/blackCards/{i+1}.png", "черный"))
             for i in range(8):
                 self.rule_deck.append(Card(list_cards[1][i][0], list_cards[1][i][1], list_cards[1][i][2], f"assets/imageCards/ruleCards/colorCards/{i+1}.png", "цвет"))
             for i in range(8):
