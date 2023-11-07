@@ -1,18 +1,18 @@
 class Player:
     def __init__(self, name="Player"):
         self.name = name
-        self.score = 0
+        self._score = 0
         self.wins = 0
         self.hand_deck = []
 
     def __repr__(self):
         return f'{self.name}'
 
-    def set_score(self, count_score):
-        self.score += count_score
+    def add_score(self, count_score):
+        self._score += count_score
 
     def get_score(self):
-        return self.score
+        return self._score
 
     def set_win(self):
         self.wins += 1

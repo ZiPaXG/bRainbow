@@ -1,3 +1,6 @@
+from models.card import Card
+from models.player import Player
+
 class Game:
     def __init__(self, pg):
         self.screen_width, self.screen_height = 1300, 1000
@@ -36,8 +39,22 @@ class Game:
         print("Правило 3: Выпала карта bRainbow - нужно быстрее всех забрать ее")
         print("Правило 4: На карте из общей колоды указано <Название> - берем карту с цветом названия основного слова, который указан")
 
-    def check_selected_card(self):
-        pass
+    def check_selected_card(self, player: Player, deck_card: Card, player_cards: list[Card], numCard):
+        if deck_card.fgColor == "черный":
+            if deck_card.gameRule == "цвет":
+                if player_cards[numCard].name != deck_card.bgColor:
+                    player.add_score(3)
+            elif deck_card.gameRule == "название":
+                if player_cards[numCard].name != deck_card.name:
+                    player.add_score(3)
+        elif deck_card.gameRule == "цвет":
+            if player_cards[numCard].name != deck_card.fgColor:
+                player.add_score(3)
+        elif deck_card.gameRule == "название":
+            if player_cards[numCard].fgColor != deck_card.name:
+                player.add_score(3)
+
+
 
     def start(self, pg):
         isRunning = True

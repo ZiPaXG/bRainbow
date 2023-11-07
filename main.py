@@ -36,6 +36,11 @@ while isRunning:
             for i in range(len(deck.rule_deck)):
                 print(deck.rule_deck[i])
                 print(f"Игрок {list_players[0]} - выбирайте свою карту (введите от 1 до 6). Если нет подходящей - напишите 0")
+                print(f"Колода: {list_players[0].hand_deck}")
                 a = int(input())
-                game.check_selected_card()
+                game.check_selected_card(list_players[0], deck.rule_deck[i], list_players[0].hand_deck, a-1)
+                print(list_players[0].get_score())
+            print("Общее количество очков: ")
+            for i in range(len(list_players)):
+                print(f"{list_players[i]} - {list_players[i].get_score()}")
 

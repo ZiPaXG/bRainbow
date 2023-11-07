@@ -33,7 +33,7 @@ class Deck:
         random.shuffle(self.rule_deck)
         random.shuffle(self.players_deck)
 
-    def give_cards(self, list_players:list[Player]):
+    def give_cards(self, list_players: list[Player]):
         for i in range(len(list_players)):
             list_players[i].hand_deck = self.players_deck[i]
 
