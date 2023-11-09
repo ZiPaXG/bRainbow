@@ -19,7 +19,8 @@ deck.shuffleCards()
 deck.give_cards(list_players)
 game = Game(pg)
 
-isRunning = True
+game.start_display(pg)
+'''isRunning = True
 print("Вас приветствует игра bRainbow! ")
 while isRunning:
     print("Выбирайте опцию:")
@@ -46,5 +47,5 @@ while isRunning:
             # Подсчет очков
             print("Общее количество очков: ")
             for i in range(len(list_players)):
-                print(f"{list_players[i]} - {list_players[i].get_score()}")
+                print(f"{list_players[i]} - {list_players[i].get_score()}")'''
 
