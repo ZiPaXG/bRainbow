@@ -1,7 +1,7 @@
 import pygame
 
 from assets.config import RESOURCES, GEOMETRY
-from views.game_view import ViewGame
+from views.game_view import GameView
 
 
 class Application:
@@ -16,17 +16,16 @@ class Application:
         self.display = pygame.display.set_mode(self.size)
         pygame.display.set_caption(RESOURCES['title'])
 
-        self.vgame = ViewGame(self.size)
+        self.vgame = GameView(self.display.get_width(), self.display.get_height())
 
     def run(self):
         running = True
         while running:
-            self.vgame.draw(self.display)
+            self.vgame.redraw(self.display)
             for event in pygame.event.get():
                 # нажали крестик на окне
                 if event.type == pygame.QUIT:
                     running = False
-                self.vgame.dispatcher(event)
 
         pygame.quit()
 
