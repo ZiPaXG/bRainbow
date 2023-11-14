@@ -2,37 +2,9 @@ from models.card import Card
 from models.player import Player
 
 class Game:
-    def __init__(self, pg):
-        self.screen_width, self.screen_height = 1300, 1000
-        self.FPS = 60
-        self.clock = pg.time.Clock()
-        # Добавления поля display в класс
-        self.display = None
-
-    def start_display(self, pg):
-        self.display = pg.display.set_mode((self.screen_width, self.screen_height))
-        pg.display.set_caption('bRainbow')
-        self.loadStart(pg)
-
-    def event_processing(self, pg):
-        isRunning = True
-        for event in pg.event.get():
-            # Нажатие на крестик
-            if (event.type == pg.QUIT):
-                isRunning = False
-            if event.type == pg.KEYDOWN:
-                if event.key == pg.K_q:
-                    isRunning = False
-
-        self.clock.tick(self.FPS)
-        return isRunning
-
-    def loadStart(self, pg):
-        self.display.fill([255, 0, 0])
-        pg.display.update()
 
     @staticmethod
-    def get_rools():
+    def get_rules():
         print("Всего будет 24 раунда. Каждому игроку будет выдана колода из 6 карт")
         print("Также есть общая колода карт (24 карты). Они будут вытягиваться поочереди. К ним применяются следующие правила: ")
         print("Правило 1: На карте из общей колоды указано <Цвет> - берем карту, название которой есть цвет окраски основного слова")
@@ -40,19 +12,20 @@ class Game:
         print("Правило 3: Выпала карта bRainbow - нужно быстрее всех забрать ее")
         print("Правило 4: На карте из общей колоды указано <Название> - берем карту с цветом названия основного слова, который указан")
 
-    def check_selected_card(self, player: Player, deck_card: Card, player_cards: list[Card], numCard):
-        if numCard != -1:
+    @staticmethod
+    def check_selected_card(player: Player, deck_card: Card, player_cards: list[Card], num_card):
+        if num_card != -1:
             if deck_card.fgColor == "черный":
-                if player_cards[numCard].name != deck_card.bgColor:
+                if player_cards[num_card].name != deck_card.bgColor:
                     player.add_score(3)
             elif deck_card.gameRule == "цвет":
-                if player_cards[numCard].name != deck_card.fgColor:
+                if player_cards[num_card].name != deck_card.fgColor:
                     player.add_score(3)
             elif deck_card.gameRule == "название":
-                if player_cards[numCard].fgColor != deck_card.name:
+                if player_cards[num_card].fgColor != deck_card.name:
                     player.add_score(3)
             elif deck_card.gameRule == "bRainbow":
-                if numCard != 6:
+                if num_card != 6:
                     player.add_score(3)
         else:
             if deck_card.fgColor == "черный":
@@ -72,12 +45,3 @@ class Game:
                         break
             elif deck_card.gameRule == "bRainbow":
                 player.add_score(3)
-
-
-
-    def start(self, pg):
-        isRunning = True
-        while isRunning:
-            isRunning = self.event_processing(pg)
-        pg.quit()
-

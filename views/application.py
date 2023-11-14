@@ -28,7 +28,3 @@ class Application:
                     running = False
 
         pygame.quit()
-
-
-app = Application()
-app.run()
