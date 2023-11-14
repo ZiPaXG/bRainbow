@@ -30,4 +30,7 @@ class GameView:
     def redraw(self, display: pygame.Surface):
         if self.background_img is None:
             display.fill(GameView.BACKGROUND_COLOR, (0, 0, GEOMETRY['display'][0], GEOMETRY['display'][1]))
+        for i in range(len(self.players_cards_view)):
+            for j in range(len(self.players_cards_view[0])):
+                self.players_cards_view[i][j].draw(display, i * 100, j * 100)
         pygame.display.update()
