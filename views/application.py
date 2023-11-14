@@ -6,7 +6,7 @@ from views.game_view import GameView
 
 class Application:
 
-    def __init__(self):
+    def __init__(self, deck):
         pygame.init()
         self.size = (self.width, self.height) = GEOMETRY['display']
 
@@ -17,6 +17,10 @@ class Application:
         pygame.display.set_caption(RESOURCES['title'])
 
         self.vgame = GameView(self.display.get_width(), self.display.get_height())
+
+        # Добавляем визуал карт (карты игроков и основная колода)
+        self.vgame.add_player_cards_view(deck)
+        self.vgame.add_rule_cards_view(deck)
 
     def run(self):
         running = True

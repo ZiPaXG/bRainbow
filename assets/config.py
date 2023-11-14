@@ -6,10 +6,6 @@ RESOURCES = {
         'background': 'resources/img/background.png',
         'back': 'resources/img/back.png',
         'card': 'resources/img/{}.png'
-    },
-    'sound': {
-    },
-    'font': {
     }
 }
 

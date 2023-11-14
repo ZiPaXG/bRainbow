@@ -20,6 +20,6 @@ deck.shuffleCards()
 deck.give_cards(list_players)
 
 # Запуск приложения
-app = Application()
+app = Application(deck)
 app.run()
 

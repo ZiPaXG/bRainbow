@@ -1,5 +1,4 @@
 import pygame.image
-
 from assets.config import GEOMETRY
 
 
