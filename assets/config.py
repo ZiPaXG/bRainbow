@@ -1,5 +1,5 @@
 RESOURCES = {
-    'title': 'UNO',
+    'title': 'bRainbow',
     'FPS': 60,
     'img': {
         'bg_color': (0, 81, 44),
@@ -10,9 +10,10 @@ RESOURCES = {
 }
 
 GEOMETRY = {
-    'display': (2000, 1100),
-    'card': (280, 150),
-    'dx_card': 10,
+    'display': (1600, 900),
+    'card': (250, 130),
+    'start_pos_card': (0, 750),
+    'dx_card': 14,
     'dx_card_compact': 30,
     'xgap': 10,
     'ygap': 10,

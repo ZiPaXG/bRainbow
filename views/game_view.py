@@ -32,5 +32,5 @@ class GameView:
         if self.background_img is None:
             display.fill(GameView.BACKGROUND_COLOR, (0, 0, GEOMETRY['display'][0], GEOMETRY['display'][1]))
         for j in range(len(self.players_cards_view[0])):
-            self.players_cards_view[0][j].draw(display, j * 300, 0)
+            self.players_cards_view[0][j].draw(display, GEOMETRY['start_pos_card'][0] + 15 + GEOMETRY['card'][0] * j + GEOMETRY['dx_card'] * j, GEOMETRY['start_pos_card'][1])
         pygame.display.update()
