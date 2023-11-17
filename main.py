@@ -21,5 +21,5 @@ deck.give_cards(list_players)
 
 # Запуск приложения
 app = Application(deck)
-app.run()
+app.run(list_players)
 

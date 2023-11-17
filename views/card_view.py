@@ -8,7 +8,6 @@ class CardView:
         self.height = GEOMETRY["card"][1]
         self.img = pygame.transform.scale(pygame.image.load(path_img), (self.width, self.height))
         self.rectangle = pygame.Rect(0, 0, 0, 0)
-        self.isBorder = False
 
     def draw(self, display: pygame.Surface, x: int, y: int):
         self.rectangle = pygame.Rect(x, y, self.width, self.height)

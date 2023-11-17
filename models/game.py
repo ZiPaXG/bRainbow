@@ -45,3 +45,4 @@ class Game:
                         break
             elif deck_card.gameRule == "bRainbow":
                 player.add_score(3)
+        print(player.get_score())
