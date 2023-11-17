@@ -31,4 +31,8 @@ class Application:
                 if event.type == pygame.QUIT:
                     running = False
 
+                for i in self.vgame.players_cards_view:
+                    for j in i:
+                        j.check_collide_rect(self.display)
+
         pygame.quit()

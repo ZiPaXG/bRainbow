@@ -7,11 +7,13 @@ class CardView:
         self.width = GEOMETRY["card"][0]
         self.height = GEOMETRY["card"][1]
         self.img = pygame.transform.scale(pygame.image.load(path_img), (self.width, self.height))
-        self.first_point = [0, 0]
-        self.second_point = [0, 0]
+        self.rectangle = pygame.Rect(0, 0, 0, 0)
+        self.isBorder = False
 
     def draw(self, display: pygame.Surface, x: int, y: int):
-        self.first_point = [x, y]
-        self.second_point = [x + self.width, y + self.height]
+        self.rectangle = pygame.Rect(x, y, self.width, self.height)
         display.blit(self.img, (x, y))
-        print(self.first_point, self.second_point)
+
+    def check_collide_rect(self, display: pygame.Surface):
+        if self.rectangle.collidepoint(pygame.mouse.get_pos()):
+            pygame.draw.rect(display, (0, 255, 255), self.rectangle, 4, 10)

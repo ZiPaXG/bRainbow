@@ -42,4 +42,10 @@ class GameView:
         for j in range(len(self.players_cards_view[0])):
             self.players_cards_view[0][j].draw(display, GEOMETRY['start_pos_cards'][0] + 15 + GEOMETRY['card'][0] * j +
                                                GEOMETRY['dx_card'] * j, GEOMETRY['start_pos_cards'][1])
+
+        # Проверка на позицию мыши
+        for j in range(len(self.players_cards_view[0])):
+            self.players_cards_view[0][j].check_collide_rect(display)
+        self.rule_cards_view[0].check_collide_rect(display)
+
         pygame.display.update()
