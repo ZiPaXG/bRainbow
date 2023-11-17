@@ -12,7 +12,9 @@ RESOURCES = {
 GEOMETRY = {
     'display': (1600, 900),
     'card': (250, 130),
-    'start_pos_card': (0, 750),
+    'start_pos_cards': (0, 750),
+    'start_pos_back': (50, 300),
+    'start_pos_game_card': (700, 300),
     'dx_card': 14,
     'dx_card_compact': 30,
     'xgap': 10,

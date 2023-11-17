@@ -1,6 +1,7 @@
 import pygame
 from assets.config import GEOMETRY
 from views.card_view import CardView
+from models.card import Card
 from models.deck import Deck
 
 
@@ -25,12 +26,20 @@ class GameView:
 
     def add_rule_cards_view(self, deck: Deck):
         lst_cards = deck.get_rule_deck()
+        # вставляем рубашку карт правил
+        lst_cards.insert(0, Card("back", "", "", f"assets/imageCards/back.png"))
         for i in range(len(lst_cards)):
             self.rule_cards_view.append(CardView(lst_cards[i].img_path))
 
     def redraw(self, display: pygame.Surface):
         if self.background_img is None:
             display.fill(GameView.BACKGROUND_COLOR, (0, 0, GEOMETRY['display'][0], GEOMETRY['display'][1]))
+        # отрисовка рубашки карт с правилами
+        self.rule_cards_view[0].draw(display, GEOMETRY['start_pos_back'][0], GEOMETRY['start_pos_back'][1])
+        # отрисовка игровой карты
+        self.rule_cards_view[1].draw(display, GEOMETRY['start_pos_game_card'][0], GEOMETRY['start_pos_game_card'][1])
+        # отрисовка карт игрока
         for j in range(len(self.players_cards_view[0])):
-            self.players_cards_view[0][j].draw(display, GEOMETRY['start_pos_card'][0] + 15 + GEOMETRY['card'][0] * j + GEOMETRY['dx_card'] * j, GEOMETRY['start_pos_card'][1])
+            self.players_cards_view[0][j].draw(display, GEOMETRY['start_pos_cards'][0] + 15 + GEOMETRY['card'][0] * j +
+                                               GEOMETRY['dx_card'] * j, GEOMETRY['start_pos_cards'][1])
         pygame.display.update()
