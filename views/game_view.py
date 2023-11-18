@@ -52,19 +52,16 @@ class GameView:
             # отрисовка игровой карты
             self.rule_cards_view[1].draw(display, GEOMETRY['start_pos_game_card'][0], GEOMETRY['start_pos_game_card'][1])
 
-        else:
-            self.rule_cards_view[0].is_visible_border = False
+            # отрисовка карт игрока
+            self.players_cards_view[0][0].draw(display, GEOMETRY['start_pos_dont_select'][0], GEOMETRY['start_pos_dont_select'][1])
+            for j in range(0, len(self.players_cards_view[1])):
+                self.players_cards_view[1][j].draw(display, GEOMETRY['start_pos_cards'][0] + 15 + GEOMETRY['card'][0] * j +
+                                                   GEOMETRY['dx_card'] * j, GEOMETRY['start_pos_cards'][1])
 
-        # отрисовка карт игрока
-        self.players_cards_view[0][0].draw(display, GEOMETRY['start_pos_dont_select'][0], GEOMETRY['start_pos_dont_select'][1])
-        for j in range(0, len(self.players_cards_view[1])):
-            self.players_cards_view[1][j].draw(display, GEOMETRY['start_pos_cards'][0] + 15 + GEOMETRY['card'][0] * j +
-                                               GEOMETRY['dx_card'] * j, GEOMETRY['start_pos_cards'][1])
-
-        # Проверка на позицию мыши
-        self.players_cards_view[0][0].check_collide_rect(display)
-        for j in range(len(self.players_cards_view[1])):
-            self.players_cards_view[1][j].check_collide_rect(display)
-        self.rule_cards_view[0].check_collide_rect(display)
+            # Проверка на позицию мыши
+            self.players_cards_view[0][0].check_collide_rect(display)
+            for j in range(len(self.players_cards_view[1])):
+                self.players_cards_view[1][j].check_collide_rect(display)
+            self.rule_cards_view[1].check_collide_rect(display)
 
         pygame.display.update()
