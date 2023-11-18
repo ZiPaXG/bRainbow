@@ -46,4 +46,6 @@ class Game:
                     if deck_card.name == player_cards[i].fgColor:
                         player.add_score(3)
                         break
+            elif deck_card.gameRule == "bRainbow":
+                player.add_score(3)
         print(player.get_score())
