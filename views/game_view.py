@@ -1,5 +1,6 @@
 import pygame
 from assets.config import GEOMETRY
+from models.player import Player
 from views.card_view import CardView
 from models.card import Card
 from models.deck import Deck
@@ -15,6 +16,7 @@ class GameView:
         self.background_img = None
         self.players_cards_view = []
         self.rule_cards_view = []
+        self.font = pygame.font.SysFont('Arial', 48)
 
     def add_player_cards_view(self, deck: Deck):
         lst_cards = deck.get_players_deck()
@@ -32,18 +34,20 @@ class GameView:
         for i in range(len(lst_cards)):
             self.rule_cards_view.append(CardView(lst_cards[i].img_path))
 
-    def redraw(self, display: pygame.Surface):
+    def redraw(self, display: pygame.Surface, player: Player):
         if self.background_img is None:
             display.fill(GameView.BACKGROUND_COLOR, (0, 0, GEOMETRY['display'][0], GEOMETRY['display'][1]))
 
+        display.blit(self.font.render(f'Очки: {player.get_score()}', False, (255, 255, 255)), (10, 10))
         if len(self.rule_cards_view) > 1:
             # отрисовка рубашки карт с правилами
             self.rule_cards_view[0].draw(display, GEOMETRY['start_pos_back'][0], GEOMETRY['start_pos_back'][1])
 
             # отрисовка игровой карты
             self.rule_cards_view[1].draw(display, GEOMETRY['start_pos_game_card'][0], GEOMETRY['start_pos_game_card'][1])
+
         else:
-            self.rule_cards_view[0].isVisibleBorder = False
+            self.rule_cards_view[0].is_visible_border = False
 
         # отрисовка карт игрока
         for j in range(len(self.players_cards_view[0])):

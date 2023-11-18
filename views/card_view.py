@@ -8,12 +8,12 @@ class CardView:
         self.height = GEOMETRY["card"][1]
         self.img = pygame.transform.scale(pygame.image.load(path_img), (self.width, self.height))
         self.rectangle = pygame.Rect(0, 0, 0, 0)
-        self.isVisibleBorder = True
+        self.is_visible_border = True
 
     def draw(self, display: pygame.Surface, x: int, y: int):
         self.rectangle = pygame.Rect(x, y, self.width, self.height)
         display.blit(self.img, (x, y))
 
     def check_collide_rect(self, display: pygame.Surface):
-        if self.rectangle.collidepoint(pygame.mouse.get_pos()) and self.isVisibleBorder:
+        if self.rectangle.collidepoint(pygame.mouse.get_pos()) and self.is_visible_border:
             pygame.draw.rect(display, (0, 255, 255), self.rectangle, 4, 10)

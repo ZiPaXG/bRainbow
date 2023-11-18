@@ -10,6 +10,7 @@ class Application:
 
     def __init__(self, deck):
         pygame.init()
+        pygame.font.init()
         self.deck = deck
         self.size = (self.width, self.height) = GEOMETRY['display']
 
@@ -28,7 +29,7 @@ class Application:
     def run(self, list_players: list[Player]):
         running = True
         while running:
-            self.vgame.redraw(self.display)
+            self.vgame.redraw(self.display, list_players[0])
             for event in pygame.event.get():
                 # нажали крестик на окне
                 if event.type == pygame.QUIT:
