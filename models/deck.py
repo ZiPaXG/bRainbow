@@ -45,4 +45,7 @@ class Deck:
     def get_rule_deck(self):
         return self._rule_deck
 
+    def remove_rule_card_from_deck(self):
+        self._rule_deck.pop(1)
+
 

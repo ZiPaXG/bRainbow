@@ -36,12 +36,14 @@ class Application:
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if event.button == 1:
-                        if self.vgame.rule_cards_view[0].rectangle.collidepoint(pygame.mouse.get_pos()) and len(self.vgame.rule_cards_view) > 1:
-                            self.vgame.rule_cards_view.pop(1)
-                        else:
-                            for i in range(len(self.vgame.players_cards_view[0])):
-                                if self.vgame.players_cards_view[0][i].rectangle.collidepoint(pygame.mouse.get_pos()):
-                                    Game.check_selected_card(list_players[0], self.deck.get_rule_deck()[1], self.deck.get_players_deck()[0], i)
+                        if len(self.vgame.rule_cards_view) > 1:
+                            if self.vgame.rule_cards_view[0].rectangle.collidepoint(pygame.mouse.get_pos()):
+                                self.vgame.rule_cards_view.pop(1)
+                                self.deck.remove_rule_card_from_deck()
+                            else:
+                                for i in range(len(self.vgame.players_cards_view[0])):
+                                    if self.vgame.players_cards_view[0][i].rectangle.collidepoint(pygame.mouse.get_pos()):
+                                        Game.check_selected_card(list_players[0], self.deck.get_rule_deck()[1], self.deck.get_players_deck()[0], i)
 
                 for i in self.vgame.players_cards_view[0]:
                     i.check_collide_rect(self.display)
