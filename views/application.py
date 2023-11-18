@@ -50,3 +50,4 @@ class Application:
                     i.check_collide_rect(self.display)
 
         pygame.quit()
+        
