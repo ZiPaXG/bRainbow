@@ -1,8 +1,8 @@
 from models.card import Card
 from models.player import Player
 
-class Game:
 
+class Game:
     @staticmethod
     def get_rules():
         print("Всего будет 24 раунда. Каждому игроку будет выдана колода из 6 карт")

@@ -3,6 +3,7 @@ from models.player import Player
 import json
 import random
 
+
 class Deck:
     def __init__(self):
         self._players_deck = []
