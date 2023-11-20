@@ -18,7 +18,6 @@ class Deck:
                 self._players_deck.append(card_list)
 
         # Создание колоды карт правил
-
         # bRainbow
         for i in range(3):
             self._rule_deck.append(Card("bRainbow", "", "", f"assets/imageCards/ruleCards/bRainbowCard.png", "bRainbow"))

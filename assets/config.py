@@ -16,8 +16,5 @@ GEOMETRY = {
     'start_pos_back': (50, 300),
     'start_pos_game_card': (700, 300),
     'start_pos_dont_select': (15, 600),
-    'dx_card': 14,
-    'dx_card_compact': 30,
-    'xgap': 10,
-    'ygap': 10,
+    'dx_card': 14
 }

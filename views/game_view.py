@@ -28,7 +28,7 @@ class GameView:
         for i in range(len(lst_cards)):
             deck_list = []
             for j in range(len(lst_cards[i])):
-                deck_list.append(CardView(lst_cards[i][j].img_path))
+                deck_list.append(CardView(lst_cards[i][j].img_path, True))
             self.players_cards_view.append(deck_list)
 
     def add_rule_cards_view(self, deck: Deck):
@@ -37,7 +37,10 @@ class GameView:
         # вставляем рубашку карт правил
         lst_cards.insert(0, Card("back", "", "", "assets/imageCards/back.png"))
         for i in range(len(lst_cards)):
-            self.rule_cards_view.append(CardView(lst_cards[i].img_path))
+            if lst_cards[i].name == 'bRainbow':
+                self.rule_cards_view.append(CardView(lst_cards[i].img_path, True))
+            else:
+                self.rule_cards_view.append(CardView(lst_cards[i].img_path, False))
 
     def redraw(self, display: pygame.Surface, player: Player):
         if self.background_img is None:
