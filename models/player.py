@@ -25,3 +25,6 @@ class Player:
 
     def get_hand_deck(self):
         return self._hand_deck
+
+    def set_hand_deck(self, hand_deck):
+        self._hand_deck = hand_deck

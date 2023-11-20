@@ -37,7 +37,7 @@ class Deck:
 
     def give_cards(self, list_players: list[Player]):
         for i in range(len(list_players)):
-            list_players[i].hand_deck = self._players_deck[i]
+            list_players[i].set_hand_deck(self._players_deck[i])
 
     def get_players_deck(self):
         return self._players_deck

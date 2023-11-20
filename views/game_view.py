@@ -46,8 +46,9 @@ class GameView:
         display.blit(self.font_big.render(f'Очки: {player.get_score()}', False, (255, 255, 255)), (10, 10))
 
         if len(self.rule_cards_view) > 1:
-            # отрисовка рубашки карт с правилами
-            self.rule_cards_view[0].draw(display, GEOMETRY['start_pos_back'][0], GEOMETRY['start_pos_back'][1])
+            if len(self.rule_cards_view) > 2:
+                # отрисовка рубашки карт с правилами
+                self.rule_cards_view[0].draw(display, GEOMETRY['start_pos_back'][0], GEOMETRY['start_pos_back'][1])
 
             # отрисовка игровой карты
             self.rule_cards_view[1].draw(display, GEOMETRY['start_pos_game_card'][0], GEOMETRY['start_pos_game_card'][1])
