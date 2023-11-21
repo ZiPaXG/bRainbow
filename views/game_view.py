@@ -23,6 +23,9 @@ class GameView:
             pygame.Rect(0, 0, 0, 0),
             pygame.Rect(0, 0, 0, 0)
         ]
+        self.rule_rectangles = [
+            pygame.Rect(0, 0, 0, 0)
+        ]
 
     def add_player_cards_view(self, deck: Deck):
         lst_cards = deck.get_players_deck()
@@ -62,11 +65,27 @@ class GameView:
         self.menu_rectangles[2].x, self.menu_rectangles[2].y = 50, 550
         display.blit(text_exit, (50, 550))
 
+    def draw_rule(self, display: pygame.Surface):
+        text_back = self.font_big.render('Назад', False, (255, 255, 255))
+        self.rule_rectangles[0] = text_back.get_rect()
+        self.rule_rectangles[0].x, self.rule_rectangles[0].y = 50, 20
+        display.blit(text_back, (50, 20))
+
+        print("Всего будет 24 раунда. Каждому игроку будет выдана колода из 6 карт")
+        print("Также есть общая колода карт (24 карты). Они будут вытягиваться поочереди. К ним применяются следующие правила: ")
+        print("Правило 1: На карте из общей колоды указано <Цвет> - берем карту, название которой есть цвет окраски основного слова")
+        print("Правило 2: На карте из общей колоды название написано черным - берем карту, название которой есть цвет фона")
+        print("Правило 3: Выпала карта bRainbow - нужно быстрее всех забрать ее")
+        print("Правило 4: На карте из общей колоды указано <Название> - берем карту с цветом названия основного слова, который указан")
+
     def redraw(self, display: pygame.Surface, player: Player):
         display.fill(GameView.BACKGROUND_COLOR, (0, 0, GEOMETRY['display'][0], GEOMETRY['display'][1]))
 
         if self.current_state == STATES['menu']:
             self.draw_menu(display)
+
+        elif self.current_state == STATES['rule']:
+            self.draw_rule(display)
 
         elif self.current_state == STATES['game']:
             display.blit(self.font_big.render(f'Очки: {player.get_score()}', False, (255, 255, 255)), (10, 10))
