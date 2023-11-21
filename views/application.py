@@ -1,16 +1,16 @@
 import pygame
 
-from assets.config import RESOURCES, GEOMETRY
+from assets.config import *
 from models.game import Game
 from models.player import Player
 from views.game_view import GameView
 
 
 class Application:
-
     def __init__(self, deck):
         pygame.init()
         pygame.font.init()
+
         self.deck = deck
         self.size = (self.width, self.height) = GEOMETRY['display']
 
@@ -37,24 +37,28 @@ class Application:
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if event.button == 1:
-                        if len(self.vgame.rule_cards_view) > 1:
-                            if self.vgame.rule_cards_view[1].rectangle.collidepoint(pygame.mouse.get_pos()) and self.vgame.rule_cards_view[1].is_visible_border:
-                                Game.check_selected_card(list_players[0], self.deck.get_rule_deck()[1],
-                                                         self.deck.get_players_deck()[1], 6)
-                                self.vgame.rule_cards_view.pop(1)
-                                self.deck.remove_rule_card_from_deck()
-                            elif self.vgame.players_cards_view[0][0].rectangle.collidepoint(pygame.mouse.get_pos()):
-                                Game.check_selected_card(list_players[0], self.deck.get_rule_deck()[1],
-                                                         self.deck.get_players_deck()[1], -1)
-                                self.vgame.rule_cards_view.pop(1)
-                                self.deck.remove_rule_card_from_deck()
-                            else:
-                                for i in range(len(self.vgame.players_cards_view[1])):
-                                    if self.vgame.players_cards_view[1][i].rectangle.collidepoint(pygame.mouse.get_pos()):
-                                        Game.check_selected_card(list_players[0], self.deck.get_rule_deck()[1],
-                                                                 self.deck.get_players_deck()[1], i)
-                                        self.vgame.rule_cards_view.pop(1)
-                                        self.deck.remove_rule_card_from_deck()
+                        if self.vgame.current_state == STATES['game']:
+                            if len(self.vgame.rule_cards_view) > 1:
+                                if self.vgame.rule_cards_view[1].rectangle.collidepoint(pygame.mouse.get_pos()) and self.vgame.rule_cards_view[1].is_visible_border:
+                                    Game.check_selected_card(list_players[0], self.deck.get_rule_deck()[1],
+                                                            self.deck.get_players_deck()[1], 6)
+                                    self.vgame.rule_cards_view.pop(1)
+                                    self.deck.remove_rule_card_from_deck()
+                                elif self.vgame.players_cards_view[0][0].rectangle.collidepoint(pygame.mouse.get_pos()):
+                                    Game.check_selected_card(list_players[0], self.deck.get_rule_deck()[1],
+                                                            self.deck.get_players_deck()[1], -1)
+                                    self.vgame.rule_cards_view.pop(1)
+                                    self.deck.remove_rule_card_from_deck()
+                                else:
+                                    for i in range(len(self.vgame.players_cards_view[1])):
+                                        if self.vgame.players_cards_view[1][i].rectangle.collidepoint(pygame.mouse.get_pos()):
+                                            Game.check_selected_card(list_players[0], self.deck.get_rule_deck()[1],
+                                                                    self.deck.get_players_deck()[1], i)
+                                            self.vgame.rule_cards_view.pop(1)
+                                            self.deck.remove_rule_card_from_deck()
+                        if self.vgame.current_state == STATES['menu']:
+                            if self.vgame.menu_rectangles[2].collidepoint(pygame.mouse.get_pos()):
+                                running = False
 
         pygame.quit()
         

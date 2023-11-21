@@ -4,9 +4,8 @@ RESOURCES = {
     'img': {
         'bg_color': (0, 81, 44),
         'background': 'resources/img/background.png',
-        'back': 'resources/img/back.png',
-        'card': 'resources/img/{}.png'
-    }
+        'back': 'resources/img/back.png'
+    },
 }
 
 GEOMETRY = {
@@ -16,5 +15,11 @@ GEOMETRY = {
     'start_pos_back': (50, 300),
     'start_pos_game_card': (700, 300),
     'start_pos_dont_select': (15, 600),
-    'dx_card': 14
+    'dx_card': 14,
+}
+
+STATES = {
+    'menu': 0,
+    'game': 1,
+    'rule': 2
 }
