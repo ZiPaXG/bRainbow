@@ -57,6 +57,8 @@ class Application:
                                             self.vgame.rule_cards_view.pop(1)
                                             self.deck.remove_rule_card_from_deck()
                         if self.vgame.current_state == STATES['menu']:
+                            if self.vgame.menu_rectangles[0].collidepoint(pygame.mouse.get_pos()):
+                                self.vgame.current_state = STATES['game']
                             if self.vgame.menu_rectangles[2].collidepoint(pygame.mouse.get_pos()):
                                 running = False
 

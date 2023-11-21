@@ -61,7 +61,6 @@ class GameView:
         self.menu_rectangles[2] = text_exit.get_rect()
         self.menu_rectangles[2].x, self.menu_rectangles[2].y = 650, 550
         display.blit(text_exit, (650, 550))
-        print(self.menu_rectangles)
 
     def redraw(self, display: pygame.Surface, player: Player):
         display.fill(GameView.BACKGROUND_COLOR, (0, 0, GEOMETRY['display'][0], GEOMETRY['display'][1]))
