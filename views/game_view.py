@@ -45,22 +45,22 @@ class GameView:
             self.rule_cards_view.append(CardView(lst_cards[i].img_path, True if lst_cards[i].name == 'bRainbow' else False))
 
     def draw_menu(self, display: pygame.Surface):
-        display.blit(self.font_very_big.render('bRainbow', False, (255, 255, 255)), (650, 200))
+        display.blit(self.font_very_big.render('bRainbow', False, (255, 255, 255)), (50, 200))
 
         text_start = self.font_big.render('Играть', False, (255, 255, 255))
         self.menu_rectangles[0] = text_start.get_rect()
-        self.menu_rectangles[0].x, self.menu_rectangles[0].y = 650, 350
-        display.blit(text_start, (650, 350))
+        self.menu_rectangles[0].x, self.menu_rectangles[0].y = 50, 350
+        display.blit(text_start, (50, 350))
 
         text_rule = self.font_big.render('Правила', False, (255, 255, 255))
         self.menu_rectangles[1] = text_rule.get_rect()
-        self.menu_rectangles[1].x, self.menu_rectangles[1].y = 650, 450
-        display.blit(text_rule, (650, 450))
+        self.menu_rectangles[1].x, self.menu_rectangles[1].y = 50, 450
+        display.blit(text_rule, (50, 450))
 
         text_exit = self.font_big.render('Выйти', False, (255, 255, 255))
         self.menu_rectangles[2] = text_exit.get_rect()
-        self.menu_rectangles[2].x, self.menu_rectangles[2].y = 650, 550
-        display.blit(text_exit, (650, 550))
+        self.menu_rectangles[2].x, self.menu_rectangles[2].y = 50, 550
+        display.blit(text_exit, (50, 550))
 
     def redraw(self, display: pygame.Surface, player: Player):
         display.fill(GameView.BACKGROUND_COLOR, (0, 0, GEOMETRY['display'][0], GEOMETRY['display'][1]))
