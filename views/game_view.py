@@ -5,6 +5,7 @@ from views.card_view import CardView
 from models.card import Card
 from models.deck import Deck
 
+
 class GameView:
     BACKGROUND_COLOR = (0, 81, 44)
 
