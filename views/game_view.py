@@ -27,7 +27,10 @@ class GameView:
         self.rule_rectangles = [
             pygame.Rect(0, 0, 0, 0)
         ]
-
+        self.end_rectangles = [
+            pygame.Rect(0, 0, 0, 0),
+            pygame.Rect(0, 0, 0, 0)
+        ]
     def add_player_cards_view(self, deck: Deck):
         lst_cards = deck.get_players_deck()
 
@@ -91,6 +94,24 @@ class GameView:
             self.font_middle.render('4. На карте из общей колоды указано <Название> - берем карту с цветом названия указанного слова', False, (255, 255, 255)),
             (50, 450))
 
+    def draw_end(self, display: pygame.Surface, score_player=0):
+        display.blit(
+            self.font_very_big.render('Игра окончена', False, (255, 255, 255)),
+            (600, 100))
+        display.blit(
+            self.font_big.render(f'Ваши очки: {score_player}', False, (255, 255, 255)),
+            (715, 210))
+        
+        text_restart = self.font_middle.render('Переиграть', False, (255, 255, 255))
+        self.end_rectangles[0] = text_restart.get_rect()
+        self.end_rectangles[0].x, self.end_rectangles[0].y = 620, 280
+        display.blit(text_restart, (620, 280))
+        
+        text_exit = self.font_middle.render('Выйти', False, (255, 255, 255))
+        self.end_rectangles[1] = text_exit.get_rect()
+        self.end_rectangles[1].x, self.end_rectangles[1].y = 900, 280
+        display.blit(text_exit, (900, 280))
+
     def redraw(self, display: pygame.Surface, player: Player):
         display.fill(GameView.BACKGROUND_COLOR, (0, 0, GEOMETRY['display'][0], GEOMETRY['display'][1]))
 
@@ -123,4 +144,7 @@ class GameView:
                     self.players_cards_view[1][j].check_collide_rect(display)
                 self.rule_cards_view[1].check_collide_rect(display)
 
+        elif self.current_state == STATES['end']:
+            self.draw_end(display, player.get_score())
+        
         pygame.display.update()

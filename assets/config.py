@@ -21,5 +21,6 @@ GEOMETRY = {
 STATES = {
     'menu': 0,
     'game': 1,
-    'rule': 2
+    'rule': 2,
+    'end': 3
 }

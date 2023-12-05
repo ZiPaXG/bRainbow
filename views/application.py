@@ -44,9 +44,11 @@ class Application:
                                 self.vgame.current_state = STATES['rule']
                             elif self.vgame.menu_rectangles[2].collidepoint(pygame.mouse.get_pos()):
                                 running = False
+
                         if self.vgame.current_state == STATES['rule']:
                             if self.vgame.rule_rectangles[0].collidepoint(pygame.mouse.get_pos()):
                                 self.vgame.current_state = STATES['menu']
+
                         if self.vgame.current_state == STATES['game']:
                             if len(self.vgame.rule_cards_view) > 1:
                                 if self.vgame.rule_cards_view[1].rectangle.collidepoint(pygame.mouse.get_pos()) and self.vgame.rule_cards_view[1].is_visible_border:
@@ -66,6 +68,14 @@ class Application:
                                                                     self.deck.get_players_deck()[1], i)
                                             self.vgame.rule_cards_view.pop(1)
                                             self.deck.remove_rule_card_from_deck()
+                            if len(self.vgame.rule_cards_view) == 1:
+                                self.vgame.current_state = STATES['end']
+
+                        if self.vgame.current_state == STATES['end']:
+                            if self.vgame.end_rectangles[0].collidepoint(pygame.mouse.get_pos()):
+                                pass
+                            if self.vgame.end_rectangles[1].collidepoint(pygame.mouse.get_pos()):
+                                running = not running
 
 
         pygame.quit()
