@@ -1,8 +1,4 @@
-import pygame as pg
-from models.game import Game
-from models.card import Card
 from models.player import Player
-from models.deck import Deck
 from views.application import Application
 
 ''' 
