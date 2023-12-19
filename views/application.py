@@ -4,14 +4,16 @@ from assets.config import *
 from models.game import Game
 from models.player import Player
 from views.game_view import GameView
+from models.deck import Deck
 
 
 class Application:
-    def __init__(self, deck):
+    def __init__(self, list_players: list[Player]):
         pygame.init()
         pygame.font.init()
 
-        self.deck = deck
+        self.list_players = list_players
+        self.deck = None
         self.size = (self.width, self.height) = GEOMETRY['display']
 
         self.FPS = RESOURCES['FPS']
@@ -22,14 +24,20 @@ class Application:
 
         self.vgame = GameView(self.display.get_width(), self.display.get_height())
 
-        # Добавляем визуал карт (карты игроков и основная колода)
-        self.vgame.add_player_cards_view(deck)
-        self.vgame.add_rule_cards_view(deck)
+    def restart_game(self):
+        self.deck = Deck()
+        self.deck.shuffleCards()
+        self.deck.give_cards(self.list_players)
 
-    def run(self, list_players: list[Player]):
+        # Добавляем визуал карт (карты игроков и основная колода)
+        self.vgame.add_player_cards_view(self.deck)
+        self.vgame.add_rule_cards_view(self.deck)
+
+    def run(self):
+        self.restart_game()
         running = True
         while running:
-            self.vgame.redraw(self.display, list_players[0])
+            self.vgame.redraw(self.display, self.list_players[0])
             for event in pygame.event.get():
                 # нажали крестик на окне
                 if event.type == pygame.QUIT:
@@ -52,19 +60,19 @@ class Application:
                         if self.vgame.current_state == STATES['game']:
                             if len(self.vgame.rule_cards_view) > 1:
                                 if self.vgame.rule_cards_view[1].rectangle.collidepoint(pygame.mouse.get_pos()) and self.vgame.rule_cards_view[1].is_visible_border:
-                                    Game.check_selected_card(list_players[0], self.deck.get_rule_deck()[1],
+                                    Game.check_selected_card(self.list_players[0], self.deck.get_rule_deck()[1],
                                                             self.deck.get_players_deck()[1], 6)
                                     self.vgame.rule_cards_view.pop(1)
                                     self.deck.remove_rule_card_from_deck()
                                 elif self.vgame.players_cards_view[0][0].rectangle.collidepoint(pygame.mouse.get_pos()):
-                                    Game.check_selected_card(list_players[0], self.deck.get_rule_deck()[1],
+                                    Game.check_selected_card(self.list_players[0], self.deck.get_rule_deck()[1],
                                                             self.deck.get_players_deck()[1], -1)
                                     self.vgame.rule_cards_view.pop(1)
                                     self.deck.remove_rule_card_from_deck()
                                 else:
                                     for i in range(len(self.vgame.players_cards_view[1])):
                                         if self.vgame.players_cards_view[1][i].rectangle.collidepoint(pygame.mouse.get_pos()):
-                                            Game.check_selected_card(list_players[0], self.deck.get_rule_deck()[1],
+                                            Game.check_selected_card(self.list_players[0], self.deck.get_rule_deck()[1],
                                                                     self.deck.get_players_deck()[1], i)
                                             self.vgame.rule_cards_view.pop(1)
                                             self.deck.remove_rule_card_from_deck()
@@ -73,10 +81,11 @@ class Application:
 
                         if self.vgame.current_state == STATES['end']:
                             if self.vgame.end_rectangles[0].collidepoint(pygame.mouse.get_pos()):
-                                pass
+                                self.restart_game()
+                                self.vgame.current_state = STATES['game']
+
                             if self.vgame.end_rectangles[1].collidepoint(pygame.mouse.get_pos()):
                                 running = not running
-
 
         pygame.quit()
         

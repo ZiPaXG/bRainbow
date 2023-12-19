@@ -15,11 +15,8 @@ from views.application import Application
 
 list_players = list()
 list_players.append(Player("ZiPaXG"))
-deck = Deck()
-deck.shuffleCards()
-deck.give_cards(list_players)
 
 # Запуск приложения
-app = Application(deck)
-app.run(list_players)
+app = Application(list_players)
+app.run()
 

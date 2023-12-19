@@ -31,7 +31,9 @@ class GameView:
             pygame.Rect(0, 0, 0, 0),
             pygame.Rect(0, 0, 0, 0)
         ]
+
     def add_player_cards_view(self, deck: Deck):
+        self.players_cards_view.clear()
         lst_cards = deck.get_players_deck()
 
         # вставляем карту не выбирать
@@ -44,6 +46,7 @@ class GameView:
             self.players_cards_view.append(deck_list)
 
     def add_rule_cards_view(self, deck: Deck):
+        self.rule_cards_view.clear()
         lst_cards = deck.get_rule_deck()
 
         # вставляем рубашку карт правил
