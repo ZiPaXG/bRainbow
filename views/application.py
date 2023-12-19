@@ -25,6 +25,9 @@ class Application:
         self.vgame = GameView(self.display.get_width(), self.display.get_height())
 
     def restart_game(self):
+        for player in self.list_players:
+            player.clear_score()
+
         self.deck = Deck()
         self.deck.shuffleCards()
         self.deck.give_cards(self.list_players)

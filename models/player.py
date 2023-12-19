@@ -14,6 +14,9 @@ class Player:
     def get_score(self):
         return self._score
 
+    def clear_score(self):
+        self._score = 0
+
     def add_win(self):
         self._wins += 1
 
