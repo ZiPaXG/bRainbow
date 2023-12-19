@@ -1,5 +1,5 @@
 # bRainbow
-Мой проект bRainbow
+Мой проект bRainbow (Запускать из main.py)
 <br/>
 <br/>
 Проект с визуалом разрабатывается на ветке develop
