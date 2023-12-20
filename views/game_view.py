@@ -38,7 +38,7 @@ class GameView:
 
         # вставляем карту не выбирать
         lst_cards.insert(0, [Card("dont_select", "", "", "assets/imageCards/dont_select.png")])
-        print(lst_cards)
+
         for i in range(len(lst_cards)):
             deck_list = []
             for j in range(len(lst_cards[i])):

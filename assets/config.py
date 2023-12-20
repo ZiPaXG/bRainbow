@@ -3,9 +3,8 @@ RESOURCES = {
     'FPS': 60,
     'img': {
         'bg_color': (0, 81, 44),
-        'background': 'resources/img/background.png',
-        'back': 'resources/img/back.png'
     },
+    'path': 'C:/Users/shepe/OneDrive/Рабочий стол/RGRTU/Programming/MFTI/bRainbowGame/bRainbow'
 }
 
 GEOMETRY = {
